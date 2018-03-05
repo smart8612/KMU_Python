@@ -47,20 +47,19 @@ def whatDay(year, month, day):
             Days_At_Month[1] = 29
             DoomsDay_At_Month[1] = 29
             DoomsDay_At_Month[0] = 4
-        # ---------------------------------------------------------
+
+        # Setting day at month if the year is leap Year
+        
         conwaysList = list(map(lambda x: x + 1900, conwaysList))
         initYear = closerSearch(conwaysList, Year)
-        print(initYear)
 
         if type(initYear) == int:
+            doomsWeekDayIdx = 2 + (Year - initYear)
+
             if isLeapYear(Year):
                 if initYear < Year:
-                    doomsWeekDayIdx = 2 + (Year - initYear) + 1
-                else:
-                    doomsWeekDayIdx = 2 + (Year - initYear)
+                    doomsWeekDayIdx += 1
             else:
-                doomsWeekDayIdx = 2 + (Year - initYear)
-
                 if initYear < Year:
                     for i in range(initYear, Year):
                         if isLeapYear(i):
@@ -84,14 +83,10 @@ def whatDay(year, month, day):
             elif initYear > Year:
                 doomsWeekDayIdx = 1 + int(Year - initYear)
 
-        print(Day_At_Week[doomsWeekDayIdx])
     # ----------------------------------------------------------
 
     doomsMonthDay = DoomsDay_At_Month[Month - 1]
-    alpha = (Day - doomsMonthDay) % 7
+    dayeval = Day - doomsMonthDay
+    answer = (doomsWeekDayIdx + dayeval) % 7
 
-    print(Day_At_Week[(doomsWeekDayIdx + alpha) % 7])
-
-    print(Year, "년 ", Month, "월 ", Day, "일 ", Day_At_Week[(doomsWeekDayIdx + alpha) % 7], "요일")
-
-    return (doomsWeekDayIdx + alpha) % 7
+    return answer
