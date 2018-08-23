@@ -4,16 +4,18 @@ import time
 import RPi.GPIO as GPIO
 
 # BCM GPIO핀 27번을 버튼 입력으로 사용합니다.
-button_pin = 2
-led_pin = 26
+button_pin = 3
+led_pinG = 37
+led_pinR = 35
+led_pinB = 33
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 # button_pin을 GPIO 입력으로 설정합니다.
 GPIO.setup(button_pin, GPIO.IN)
-GPIO.setup(led_pin, GPIO.OUT)
+GPIO.setup(led_pinR, GPIO.OUT)
 
-pwm = GPIO.PWM(led_pin, 100)
+pwm = GPIO.PWM(led_pinR, 100)
 pwm.start(0)
 
 try:

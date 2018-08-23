@@ -8,16 +8,16 @@ import time
 import RPi.GPIO as GPIO
 
 # 18은 broadcom 사의 GPIO핀 번호를 의미합니다.
-buzzer_pin = 14
+buzzer_pin = 8
 
 # BCM GPIO 핀 번호를 사용하도록 설정합니다.
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 """
 음계별 표준 주파수
-[ 도, 레, 미, 파, 솔, 라 시, 도]
+[ 도, 레, 미, 파, 솔, 라, 시, 도]
 """
-scale = [261, 294, 329, 349, 392, 440, 493, 523]
+scale = [261.6, 293.6, 329.6, 349.2, 391.9, 440.0, 493.8, 523.2]
 
 """
 buzzer_pin 을 GPIO 출력으로 설정합니다. 이를 통해 led_pin으로
@@ -27,13 +27,13 @@ GPIO.setup(buzzer_pin, GPIO.OUT)
 
 try:
     p = GPIO.PWM(buzzer_pin, 100)
-    p.start(90)     # start the PWM on 100% duty cycle
+    p.start(5)     # start the PWM on 100% duty cycle
     # p.ChangeDutyCycle(5)  # change the duty cycle to 90%
 
     for i in range(8):
         print (i + 1)
         p.ChangeFrequency(scale[i])
-        time.sleep(0.25)
+        time.sleep(0.5)
 
     p.stop()  # stop the PWM output
 

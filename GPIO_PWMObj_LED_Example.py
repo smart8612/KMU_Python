@@ -8,16 +8,20 @@ import time
 import RPi.GPIO as GPIO
 
 # 18은 broadcom 사의 GPIO핀 번호를 의미합니다.
-led_pin = 26
+led_pinG = 37
+led_pinR = 35
+led_pinB = 33
 
 # BCM GPIO 핀 번호를 사용하도록 설정합니다.
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 """
 led_pin을 GPIO 출력으로 설정합니다. 이를 통해 led_pin으로
 True 혹은 False를 쓸 수 있게 됩니다.
 """
-GPIO.setup(led_pin, GPIO.OUT)
+# GPIO.setup(led_pinR, GPIO.OUT)
+# GPIO.setup(led_pinG, GPIO.OUT)
+GPIO.setup(led_pinB, GPIO.OUT)
 
 """
 led_pin 으로 출력되는 주파수를 100Hz로 설정한 PWM 객체를 생성합니다.
@@ -26,7 +30,7 @@ led_pin 으로 출력되는 주파수를 100Hz로 설정한 PWM 객체를 생성
 인자로 넘어가는 0은 PWM 한 파형 당 HIGH 구간의 길이를 의미하며
 0.0 ~ 100.0 사이의 값을 가질 수 있습니다.
 """
-pwm = GPIO.PWM(led_pin, 100)
+pwm = GPIO.PWM(led_pinB, 100)
 pwm.start(0)
 
 try:
@@ -46,10 +50,9 @@ try:
 
 
 except KeyboardInterrupt:
-    pass
+    pwm.stop()
+    GPIO.cleanup()
 
 """
 KeyboardInterrupt 가 발생하면 PWM 동작을 멈춥니다.
 """
-pwm.stop()
-GPIO.cleanup()
