@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 import time
 
 # BCM GPIO핀 27번을 버튼 입력으로 사용합니다.
-button_pin = 2
-GPIO.setmode(GPIO.BCM)
+button_pin = 3
+GPIO.setmode(GPIO.BOARD)
 
 # button_pin을 GPIO 입력으로 설정합니다.
 GPIO.setup(button_pin, GPIO.IN)
@@ -20,7 +20,6 @@ try:
         """
         buttonInput = GPIO.input(button_pin)
         print(buttonInput)
-        time.sleep(0.01)
 
 except KeyboardInterrupt:
     pass
