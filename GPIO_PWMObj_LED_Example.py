@@ -4,15 +4,14 @@ LED를 제어하기 위해 RPi.GPIO 모듈을 GPIO로 import 합니다.
 sleep 함수를 사용하기 위해서 time 모듈을 import 합니다.
 """
 import time
-
 import RPi.GPIO as GPIO
 
-# 18은 broadcom 사의 GPIO핀 번호를 의미합니다.
+# Raspberry Pi 핀의 37, 35, 33번 핀을 led 출력으로 사용합니다.
 led_pinG = 37
 led_pinR = 35
 led_pinB = 33
 
-# BCM GPIO 핀 번호를 사용하도록 설정합니다.
+# Raspberry Pi 핀 순서를 사용하도록 설정합니다.
 GPIO.setmode(GPIO.BOARD)
 
 """

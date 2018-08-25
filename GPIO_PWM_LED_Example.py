@@ -3,18 +3,15 @@
 LED를 제어하기 위해 RPi.GPIO 모듈을 GPIO로 import 합니다.
 sleep 함수를 사용하기 위해서 time 모듈을 import 합니다.
 """
-
 import time
-
 import RPi.GPIO as GPIO
 
-
-# 18은 broadcom 사의 GPIO핀 번호를 의미합니다.
+# Raspberry Pi 의 핀 번호를 의미합니다.
 led_pinG = 37
 led_pinR = 35
 led_pinB = 33
 
-# BCM GPIO 핀 번호를 사용하도록 설정합니다.
+# Raspberry Pi 의 핀 순서를 사용하도록 설정합니다.
 GPIO.setmode(GPIO.BOARD)
 
 """
@@ -35,7 +32,6 @@ try:
             변환하여 지연시간을 준다.
             """
             milisec = sec * 0.0001
-
             """
             100Hz의 주파수로 점멸하는 LED의 밝기를 
             조절하기위해 상하비를 조절한다.
@@ -47,7 +43,6 @@ try:
 
         for sec in range(100, -1, -1):
             milisec = sec * 0.0001
-
             GPIO.output(led_pinG, True)
             time.sleep(milisec)
             GPIO.output(led_pinG, False)

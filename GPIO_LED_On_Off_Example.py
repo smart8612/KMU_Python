@@ -3,16 +3,16 @@
 LED를 제어하기 위해 RPi.GPIO 모듈을 GPIO로 import 합니다.
 sleep 함수를 사용하기 위해서 time 모듈을 import 합니다.
 """
-import time
 
+import time
 import RPi.GPIO as GPIO
 
-# Raspberry Pi 핀 번호를 의미합니다.
+# Raspberry Pi 보드의 led_pin을 사용합니다.
 led_pinG = 37
 led_pinR = 35
 led_pinB = 33
 
-# Raspberry Pi GPIO 핀 번호를 사용하도록 설정합니다.
+# Raspberry Pi 보드 핀 순서를 사용하도록 설정합니다.
 GPIO.setmode(GPIO.BOARD)
 
 """
@@ -29,6 +29,7 @@ try:
         # led_pin 에 연결된 LED 가 켜집니다.
         GPIO.output(led_pinB, True)
         time.sleep(0.5)  # 5ms
+        
         # led_pin 에 연결된 LED 가 꺼집니다.
         GPIO.output(led_pinB, False)
         time.sleep(0.5)  # 5ms
