@@ -3,11 +3,9 @@ import time
 import RPi.GPIO as GPIO
 
 # Raspberry Pi 3번 핀을 버튼 입력으로 사용합니다.
-# 37, 35, 33번 핀을 LED 출력으로 사용합니다.
+# 35번 핀을 LED 출력으로 사용합니다.
 button_pin = 3
-led_pinG = 37
 led_pinR = 35
-led_pinB = 33
 
 # Raspberry Pi 핀 순서를 사용하도록 설정합니다.
 GPIO.setmode(GPIO.BOARD)

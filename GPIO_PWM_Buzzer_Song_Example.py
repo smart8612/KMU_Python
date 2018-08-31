@@ -33,8 +33,11 @@ try:
 
     for i in range(len(list)):
         print (i + 1)
-        p.ChangeFrequency(scale[list[i]] * 2)
-        time.sleep(0.25)
+        p.ChangeFrequency(scale[list[i]])
+        if i == 6 or i == 11 or i == 18 or i == 23:
+            time.sleep(0.6)
+        else:
+            time.sleep(0.3)
 
     p.stop()  # stop the PWM output
 
